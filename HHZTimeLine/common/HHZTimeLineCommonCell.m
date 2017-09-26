@@ -24,29 +24,21 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.leftIconImageView.frame = CGRectMake(HHZTimeLineCommonCellLeftIconSpace, (self.bounds.size.height - 30)/2, 30, 30);
-    self.topLineView.frame = CGRectMake(self.leftIconImageView.frame.origin.x + self.leftIconImageView.frame.size.width/2.0f, 0, 1, self.lineHeight);
-    self.bottomLineView.frame = CGRectMake(self.leftIconImageView.frame.origin.x + self.leftIconImageView.frame.size.width/2.0f, self.leftIconImageView.frame.origin.y + self.leftIconImageView.bounds.size.height + HHZTimeLineCommonCellImageSpace,1, self.lineHeight);
-}
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+-(UIImageView *)leftIconImageView
 {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
+    if(!_leftIconImageView)
     {
-        self.leftIconImageView = [[UIImageView alloc] init];
-        self.leftIconImageView.image = [UIImage imageNamed:@"test1"];
-        self.leftIconImageView.layer.cornerRadius = 15;
-        self.leftIconImageView.layer.masksToBounds = YES;
-        [self addSubview:self.leftIconImageView];
+        _leftIconImageView = [[UIImageView alloc] init];
+        _leftIconImageView.layer.cornerRadius = 15;
+        _leftIconImageView.layer.masksToBounds = YES;
+        [self addSubview:_leftIconImageView];
     }
-    return self;
+    return _leftIconImageView;
 }
 
 -(UIView *)topLineView
@@ -79,7 +71,7 @@
     id cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell)
     {
-        cell = [[[self class] alloc] init];
+        cell = [[[self class] alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:cellIdentifier];
         ((UITableViewCell *)cell).selectionStyle = UITableViewCellSelectionStyleNone;
     }
     [cell judgeLineState:indexPath rowCount:rowCount cell:cell];

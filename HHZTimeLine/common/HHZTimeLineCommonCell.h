@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView * topLineView;
 @property (nonatomic, strong) UIView * bottomLineView;
 +(instancetype)configDemoTimeLineCell:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath rowCount:(NSInteger)rowCount;
+-(void)judgeLineState:(NSIndexPath *)indexPath rowCount:(NSInteger)rowCount cell:(HHZTimeLineCommonCell *)cell;
 @end
 
 NS_ASSUME_NONNULL_END
